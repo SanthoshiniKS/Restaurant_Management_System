@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="addemp.css">
+</head>
+<body>
+    <div class="container">
+        <form id="adminForm" action="emplog.php" method="post"> 
+            <div class="head">EMPLOYEE LOGIN</div>
+            <div class="input-group">
+                <label>Employee ID:</label>
+                <input type="text" name="eid" id="eid" placeholder="eg: aa0000" >
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="pw" id="pw" required>
+            </div>
+            <div class="buttons">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById("adminForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var n = document.getElementById("eid").value;
+            var p = document.getElementById("pw").value; 
+            if (n.trim() !== "" && p.trim() !== "") {
+                window.location.href = "homepage.html";
+            } else {
+                alert("Enter Valid Username and Password");
+            }
+        });
+    </script>
+</body>
+</html>

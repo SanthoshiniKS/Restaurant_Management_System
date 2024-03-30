@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add menu</title>
+    <link rel="stylesheet" href="addmenu.css">
+</head>
+<body>
+    <center>
+        <div class="head">ENTER FOOD DETAILS</div><br><br>
+        <div id="create">
+            <input type="text" id="food" placeholder="Add Food">
+            <input type="text" id="type" placeholder="veg/non-veg">
+            <input type="text" id="amt" placeholder="Enter amount">
+            <input type="text" id="count" placeholder="Enter Availability">
+            <button class="btn" onclick="addfood()">Add</button>
+            <ul id="foodList"></ul>
+        </div>
+    </center>
+
+    <script>
+        function addfood() {
+            var food = document.getElementById("food").value;
+            var type = document.getElementById("type").value;
+            var amt = document.getElementById("amt").value;
+            var count = document.getElementById("count").value;
+            var foodList = document.getElementById("foodList");
+
+            if (food === "") {
+                alert("Oops!! Plate name is empty!");
+                return;
+            }
+
+            var li = document.createElement("li");
+            li.textContent = "Food: " + food;
+            foodList.appendChild(li);
+
+            var liType = document.createElement("li");
+            liType.textContent = "Type: " + type;
+            foodList.appendChild(liType);
+
+            var liAmt = document.createElement("li");
+            liAmt.textContent = "Amount: " + amt;
+            foodList.appendChild(liAmt);
+
+            var liCount = document.createElement("li");
+            liCount.textContent = "Availability: " + count;
+            foodList.appendChild(liCount);
+
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.classList.add("delete-button");
+            deleteButton.onclick = function() {
+                foodList.removeChild(li);
+                foodList.removeChild(liType);
+                foodList.removeChild(liAmt);
+                foodList.removeChild(liCount);
+                foodList.removeChild(deleteButton);
+                var xhr = new XMLHttpRequest();
+            xhr.open("GET", "addfood.php?delete=" +food, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send();
+            };
+
+            foodList.appendChild(deleteButton);
+
+            document.getElementById("food").value = "";
+            document.getElementById("type").value = "";
+            document.getElementById("amt").value = "";
+            document.getElementById("count").value = "";
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "addfood.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send("food=" + food + "&type=" + type + "&amt=" + amt + "&count=" + count);
+        }
+        
+    </script>
+</body>
+</html>

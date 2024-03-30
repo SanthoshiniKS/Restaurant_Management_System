@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <link rel="stylesheet" href="addemp.css">
+</head>
+<body>
+    <div class="container">
+    <form id="adminForm">
+        <div class="head">ADMIN LOGIN</div>
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" id="user" required>
+            <span id="iderror"></span>
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="pw" required>
+            <span id="pwerror"></span>
+        </div>
+        <div class="buttons">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+    <script>
+        document.getElementById("adminForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var u = document.getElementById("user").value;
+            var p = document.getElementById("pw").value;
+            if (u !== "admin" || p !== "123") {
+                alert("Invalid Username or Password");
+            } else {
+                window.location.href = "admin.php";
+            }
+        });
+    </script>
+</body>
+</html>

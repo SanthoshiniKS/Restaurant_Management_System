@@ -1,0 +1,39 @@
+body{
+    background-color: cadetblue;
+    color:antiquewhite;
+}
+ul{
+    text-decoration: none;
+    list-style-type: none;
+    padding: 0;
+}
+li{
+    height:25px;
+    width:300px;
+    background-color: white;
+    color:darkblue;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+li:last-child{
+    border-bottom: none;
+}
+.btn{
+    background-color:rgb(243, 84, 168);
+}
+.delete-button{
+    background-color: rgb(213, 227, 17);
+}
+.head{
+    width:auto;
+    height:50px;
+    background-color: coral;
+    color:white;
+    padding:40px;
+    font-weight: bolder;
+    font-size: 40px;
+}

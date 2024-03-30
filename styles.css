@@ -1,0 +1,17 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    text-decoration: none;
+    justify-content: space-around;
+  }
+  
+  li {
+    display: inline;
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+  }
+
+  

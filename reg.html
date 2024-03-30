@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="addemp.css">
+</head>
+<body>
+    <div class="container">
+        <form action="" method="post"> 
+            <div class="head">REGISTER</div>
+            <div class="input-group">
+                <label>Enter Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter name" >
+            </div>
+            <div class="input-group">
+                <label id="ge">Gender: </label>
+                <div class="input-group gen">
+                    <input type="radio" id="male" name="g"><label>Male</label>
+                    <input type="radio" id="female" name="g"><label>Female</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Age:</label>
+                <input type="text" id="age" name="age" placeholder="Enter age" >
+            </div>
+            <div class="input-group add">
+                <label>Address</label>
+                <textarea rows="10" columns="50" id="ad" name="ad" placeholder="Enter your address" ></textarea>
+            </div>
+            <div class="input-group">
+                <label>Contact Number :</label>
+                <input type="text" id="contact" name="contact" >
+            </div>
+            <div class="input-group">
+                <label>Password :</label>
+                <input type="password" id="pw" name="pw" >
+            </div>
+            <div class="buttons">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            var n = document.getElementById("name").value;
+            var p = document.getElementById("pw").value;
+            var a = document.getElementById("age").value;
+            var ad = document.getElementById("ad").value;
+            var c = document.getElementById("contact").value;
+            var g = document.querySelector('input[name="g"]:checked');
+
+            if (n.trim() !== "" && p.trim() !== "" && a.trim() !== "" && ad.trim() !== "" && c.trim() !== "" && g) {
+                window.location.href = "customer.php";
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "customer.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send("name=" + n + "&age=" + a + "&ad=" + ad + "&contact=" + c +"&g="+g+"&pw="+p);
+        });
+    </script>
+</body>
+</html>
